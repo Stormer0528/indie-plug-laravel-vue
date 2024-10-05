@@ -106,6 +106,11 @@ class CartController extends Controller
     public function update(Request $request, Cart $cart)
     {
         //
+        $product_id = $request->id;
+
+        auth()->user()->carts()->where('product_id', $product_id)->delete();
+        
+        return new CartResource(auth()->user());
     }
 
     /**
